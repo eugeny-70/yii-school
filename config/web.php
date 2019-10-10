@@ -10,7 +10,8 @@
            ],
            'request' => [
                'cookieValidationKey' => '151565+652'
-           ]
+           ],
+           'db' => require  __DIR__ . '/db.php'
        ],
        'modules' => [
            'debug' => [
