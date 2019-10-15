@@ -8,4 +8,18 @@ class UserJoinForm extends Model
    public $email;
    public $password;
    public $password2;
+
+    public function rules()
+    {
+        return [
+             [
+                 ['name', 'email', 'password', 'password2'],
+                 'required'
+             ],
+              ['name','string','min'=>3, 'max'=> 30],
+              ['email', 'email'],
+              ['password','string','min'=>4],
+            ['password2', 'compare', 'compareAttribute' => 'password' ]
+        ];
+    }
 }
