@@ -24,11 +24,16 @@ use yii\bootstrap\NavBar;
                    'class' => 'navbar-default navbar-fixed top'
             ]
    ]);
-   $menu =[
-           ['label' => 'Join', 'url' => ['/user/join']],
-           ['label' => 'Login', 'url' => ['/user/login']]
-
-   ];
+   if(Yii::$app->user->isGuest)
+       $menu =[
+               ['label' => 'Join', 'url' => ['/user/join']],
+               ['label' => 'Login', 'url' => ['/user/login']]
+       ];
+   else
+       $menu =[
+           ['label' => Yii::$app->user->getIdentity()->name],
+           ['label' => 'Logout', 'url' => ['/user/logout']]
+       ];
    echo Nav::widget([
            'options' => ['class' => 'navbar-nav navbar-right' ],
            'items' => $menu
