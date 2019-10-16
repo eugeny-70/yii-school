@@ -29,10 +29,7 @@ class UserRecord extends ActiveRecord
 
     public static function findUserByEmail($email)
     {
-        $users = static::find()->all();
-        $user = static::findOne(["email"=>$email]);
-
-        return $user;
+       return static::findOne(["email"=>$email]);
 
     }
 
