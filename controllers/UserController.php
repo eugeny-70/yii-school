@@ -15,7 +15,13 @@ class UserController extends Controller
         $userJoinForm = new UserJoinForm();
         if(Yii::$app->request->isPost)
         {
-            $userJoinForm->load(Yii::$app->request->post());
+            if ($userJoinForm->load(Yii::$app->request->post()))
+            {
+                if($userJoinForm->validate())
+                {
+                    $userJoinForm->name = ".ok";
+                }
+            }
         }
         else
         {
