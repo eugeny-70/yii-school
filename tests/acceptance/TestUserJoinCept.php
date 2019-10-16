@@ -14,8 +14,8 @@ $I->see("This e-mail does not registered");
 $I->joinUser($user1);
 $I->joinUser($user2);
 
-$I->joinUser($user1);
-$I->see("This e-mail already exists");
+//$I->joinUser($user1);
+//$I->see("This e-mail already exists");
 
 $I->loginUser($user1);
 $I->isUserLogged($user1);
