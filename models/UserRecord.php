@@ -18,10 +18,10 @@ class UserRecord extends ActiveRecord
        $faker = Factory::create();
        $this->name = $faker->name;
        $this->email = $faker->email;
-       $this->passhash = $faker->password;
+       $this->setPassword($faker->password);
        $this->status = $faker->randomDigit;
    }
-   public static function existsEmail($email)
+   public static function existsEmail(string $email ):bool
    {
        $count = static::find()->where(['email'=>'$email'])->count();
        return $count == 1;
@@ -37,7 +37,12 @@ class UserRecord extends ActiveRecord
     {
         $this->name = $userJoinForm->name;
         $this->email = $userJoinForm->email;
-        $this->passhash = $userJoinForm->password;
+        $this->setPassword($userJoinForm->password);
         $this->status=1;
+    }
+
+    public function setPassword(string $password):void
+    {
+        $this->passhash = $password;
     }
 }
