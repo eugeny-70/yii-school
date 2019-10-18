@@ -5,6 +5,7 @@ namespace app\models;
 
 
 use Faker\Factory;
+use Yii;
 use yii\db\ActiveRecord;
 
 class UserRecord extends ActiveRecord
@@ -41,8 +42,15 @@ class UserRecord extends ActiveRecord
         $this->status=1;
     }
 
+
+
     public function setPassword(string $password):void
     {
-        $this->passhash = $password;
+        $this->passhash = Yii::$app->security->generatePasswordHash($password);
+    }
+
+    public function validatePassword(string $password):bool
+    {
+        return Yii::$app->security->validatePassword($password, $this->passhash);
     }
 }
