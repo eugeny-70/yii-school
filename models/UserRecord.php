@@ -47,6 +47,7 @@ class UserRecord extends ActiveRecord
     public function setPassword(string $password):void
     {
         $this->passhash = Yii::$app->security->generatePasswordHash($password);
+        $this->authokey = Yii::$app->security->generateRandomString(100);
     }
 
     public function validatePassword(string $password):bool
